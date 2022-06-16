@@ -5,12 +5,12 @@ import requests, time, datetime, re,sys, json, random
 # 用户名（格式为 13800138000）
 
 # 酷推skey和server酱sckey和企业微信设置，只用填一个其它留空即可
-skey = sys.argv[3]
+skey = ""
 # 推送server酱
 sckey = sys.argv[4]
 # 企业微信推送
 # 是否开启企业微信推送false关闭true开启，默认关闭，开启后请填写设置并将上面两个都留空
-position = sys.argv[5]
+position = ""
 base_url = 'https://qyapi.weixin.qq.com/cgi-bin/gettoken?'
 req_url = 'https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token='
 corpid = sys.argv[6]  # 企业ID， 登陆企业微信，在我的企业-->企业信息里查看
