@@ -101,7 +101,7 @@ def getBeijinTime():
     r = requests.get(url=url, headers=hea)
     if r.status_code == 200:
         result = r.text
-        #print(result)
+        print('获取北京时间结果：', result)
         if "nhrs=" + str(time_list[0]) in result:
             a = set_push[0]
             min_1 = min_dict[time_list[0]]
@@ -165,6 +165,7 @@ def getBeijinTime():
             else:
                print("此次修改结果不推送")
     else:
+        print('min_1：' + min_1 + '---' + 'max_1：' + max_1)
         print("当前不是主人设定的提交步数时间或者主人设置了0步数呢，本次不提交")
         return
 
