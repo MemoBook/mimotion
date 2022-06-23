@@ -52,7 +52,7 @@ max_dict = {time_list[0]: 3999, time_list[1]: 5999, time_list[2]: 6999, time_lis
 # 北京时间
 time_bj = datetime.datetime.today() + datetime.timedelta(hours=8)
 now = time_bj.strftime("%Y-%m-%d %H:%M:%S")
-headers = {'User-Agent': 'MiFit/5.3.0 (iPhone; iOS 14.7.1; Scale/3.00)'}
+headers = {'User-Agent': 'MiFit/5.3.0 (iPhone; iOS 14.7.1; Scale/3.00)', 'Connection': 'close'}
 
 
 #获取区域天气情况
@@ -272,9 +272,6 @@ def main(_user,_passwd,min_1, max_1):
 # 获取时间戳
 def get_time():
     url = 'http://api.m.taobao.com/rest/api3.do?api=mtop.common.getTimestamp'
-    requests.DEFAULT_RETRIES = 5  # 增加重试连接次数
-    s = requests.session()
-    s.keep_alive = False  # 关闭多余链接
     response = requests.get(url, headers=headers).json()
     t = response['data']['t']
     return t
@@ -353,8 +350,10 @@ def run(msg):
     else:
         return
 
+
 def main_handler(event, context):
     getBeijinTime()
+
 
 if __name__ == "__main__":
     getBeijinTime()
