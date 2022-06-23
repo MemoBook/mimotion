@@ -272,6 +272,9 @@ def main(_user,_passwd,min_1, max_1):
 # 获取时间戳
 def get_time():
     url = 'http://api.m.taobao.com/rest/api3.do?api=mtop.common.getTimestamp'
+    requests.DEFAULT_RETRIES = 5  # 增加重试连接次数
+    s = requests.session()
+    s.keep_alive = False  # 关闭多余链接
     response = requests.get(url, headers=headers).json()
     t = response['data']['t']
     return t
